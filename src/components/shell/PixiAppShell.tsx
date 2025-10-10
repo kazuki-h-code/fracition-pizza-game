@@ -1,8 +1,8 @@
 import { Application, extend } from "@pixi/react";
-import { Container, Sprite } from "pixi.js";
+import { Container, Graphics } from "pixi.js";
 import React from "react";
 
-extend({ Container, Sprite });
+extend({ Container, Graphics });
 
 type PixiAppShellProps = {
   children: React.ReactNode;
@@ -10,7 +10,7 @@ type PixiAppShellProps = {
 
 export const PixiAppShell = ({ children }: PixiAppShellProps) => {
   return (
-    <Application background={"#1099bb"} resizeTo={window}>
+    <Application background={"#1099bb"} resizeTo={window} antialias={true}>
       {children}
     </Application>
   );
