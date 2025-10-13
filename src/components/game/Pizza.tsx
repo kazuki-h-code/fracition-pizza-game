@@ -1,33 +1,36 @@
-import { extend } from "@pixi/react";
-import { Container } from "pixi.js";
 import { PizzaSlice } from "./PizzaSlice";
+import { Container } from "pixi.js";
+import { extend } from "@pixi/react";
+
+extend({ Container });
 
 type PizzaProps = {
-  denominator: number;
+  selectedSlices: boolean[];
+  onSliceClick: (index: number) => void;
   radius: number;
   x: number;
   y: number;
 };
 
-extend({ Container });
-
-export const Pizza = ({ denominator, radius, x, y }: PizzaProps) => {
-  const sliceComponents = [];
-
-  for (let i = 0; i < denominator; i++) {
-    sliceComponents.push(
-      <PizzaSlice
-        key={i}
-        index={i}
-        totalSlices={denominator}
-        radius={radius}
-      />,
-    );
-  }
-
+export const Pizza = ({
+  selectedSlices,
+  onSliceClick,
+  radius,
+  x,
+  y,
+}: PizzaProps) => {
   return (
     <pixiContainer x={x} y={y}>
-      {sliceComponents}
+      {selectedSlices.map((isSelected, i) => (
+        <PizzaSlice
+          key={i}
+          index={i}
+          totalSlices={selectedSlices.length}
+          radius={radius}
+          isSelected={isSelected}
+          onSliceClick={onSliceClick}
+        />
+      ))}
     </pixiContainer>
   );
 };

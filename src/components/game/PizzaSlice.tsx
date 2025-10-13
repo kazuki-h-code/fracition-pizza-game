@@ -6,13 +6,20 @@ type PizzaSliceProps = {
   index: number;
   totalSlices: number;
   radius: number;
+  isSelected: boolean;
+  onSliceClick: (index: number) => void;
 };
 
 extend({ Graphics });
 
-export const PizzaSlice = ({ index, totalSlices, radius }: PizzaSliceProps) => {
+export const PizzaSlice = ({
+  index,
+  totalSlices,
+  radius,
+  isSelected,
+  onSliceClick,
+}: PizzaSliceProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
   const drawPizza = useCallback(
     (g: Graphics) => {
       let sliceColor = 0xffd700;
@@ -41,7 +48,7 @@ export const PizzaSlice = ({ index, totalSlices, radius }: PizzaSliceProps) => {
       interactive={true}
       onPointerOver={() => setIsHovered(true)}
       onPointerOut={() => setIsHovered(false)}
-      onClick={() => setIsSelected(!isSelected)}
+      onClick={() => onSliceClick(index)}
     />
   );
 };

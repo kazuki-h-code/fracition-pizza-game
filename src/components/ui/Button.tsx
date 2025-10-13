@@ -1,0 +1,73 @@
+import { Container, Text, Graphics, TextStyle } from "pixi.js";
+import { useState, useCallback } from "react";
+import { extend } from "@pixi/react";
+
+extend({ Container, Text, Graphics });
+
+type ButtonProps = {
+  text: string;
+  x: number;
+  y: number;
+  onClick: () => void;
+};
+
+export const Button = ({ text, x, y, onClick }: ButtonProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isPressed, setIsPressed] = useState(false);
+
+  const buttonWidth = 180;
+  const buttonHeight = 50;
+
+  const draw = useCallback(
+    (g: Graphics) => {
+      const color = isPressed ? 0x222222 : isHovered ? 0x333333 : 0x555555;
+      g.clear();
+      g.filletRect(
+        -buttonWidth / 2,
+        -buttonHeight / 2,
+        buttonWidth,
+        buttonHeight,
+        10,
+      )
+        .stroke({
+          color: color,
+          width: 1,
+        })
+        .fill(color);
+    },
+    [isHovered, isPressed],
+  );
+
+  const scale = isPressed ? 0.95 : 1;
+
+  return (
+    <pixiContainer
+      x={x}
+      y={y}
+      scale={scale}
+      interactive={true}
+      onPointerOver={() => setIsHovered(true)}
+      onPointerOut={() => setIsHovered(false)}
+      onPointerDown={() => {
+        setIsPressed(true);
+        onClick();
+      }}
+      onPointerUp={() => setIsPressed(false)}
+      onPointerUpOutside={() => setIsHovered(false)}
+    >
+      <pixiGraphics draw={draw} />
+      <pixiText
+        text={text}
+        anchor={0.5}
+        x={0}
+        y={0}
+        style={
+          new TextStyle({
+            fill: "white",
+            fontSize: 24,
+          })
+        }
+      />
+    </pixiContainer>
+  );
+};
