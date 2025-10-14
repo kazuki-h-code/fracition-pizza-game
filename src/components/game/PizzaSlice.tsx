@@ -1,4 +1,3 @@
-import { extend } from "@pixi/react";
 import { Graphics } from "pixi.js";
 import { useCallback, useState } from "react";
 
@@ -9,8 +8,6 @@ type PizzaSliceProps = {
   isSelected: boolean;
   onSliceClick: (index: number) => void;
 };
-
-extend({ Graphics });
 
 export const PizzaSlice = ({
   index,
@@ -42,13 +39,18 @@ export const PizzaSlice = ({
     [index, totalSlices, radius, isHovered, isSelected],
   );
 
+  const handlePointerDown = (index: number) => {
+    onSliceClick(index);
+    setIsHovered(false);
+  };
+
   return (
     <pixiGraphics
       draw={drawPizza}
       interactive={true}
       onPointerOver={() => setIsHovered(true)}
       onPointerOut={() => setIsHovered(false)}
-      onClick={() => onSliceClick(index)}
+      onPointerDown={() => handlePointerDown(index)}
     />
   );
 };

@@ -22,25 +22,23 @@ export const FeedbackDisplay = ({
         g.circle(0, 0, 100).stroke({
           color: 0x33ff33,
           width: 15,
-          alpha: 0.8,
         });
       } else {
         g.moveTo(-70, -70)
           .lineTo(70, 70)
           .moveTo(70, -70)
           .lineTo(-70, 70)
-          .stroke({ color: 0xff3333, width: 15, alpha: 0.8 });
+          .stroke({ color: 0xff3333, width: 15 });
       }
     },
-    [screenHeight, screenWidth, status],
+    [status],
   );
 
   const drawOverlay = useCallback(
     (g: Graphics) => {
       g.clear();
-      g.filletRect(0, 0, screenWidth, screenHeight, 0).fill({
-        color: 0x000000,
-        alpha: 0.5,
+      g.filletRect(0, 200, screenWidth, screenHeight, 0).fill({
+        alpha: 0,
       });
     },
     [screenWidth, screenHeight],

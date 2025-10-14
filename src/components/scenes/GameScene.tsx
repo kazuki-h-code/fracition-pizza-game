@@ -1,15 +1,12 @@
-import {
-  VIRTUAL_WIDTH,
-  VIRTUAL_HEIGHT,
-} from "../components/shell/PixiAppShell";
 import { useReducer } from "react";
-import { reducer, initialState } from "../reducers/gameReducer";
-import { Pizza } from "../components/game/Pizza";
-import { Button } from "../components/ui/Button";
-import { QuestionDisplay } from "../components/ui/QuestionDisplay";
-import { FeedbackDisplay } from "../components/ui/FeedbackDisplay";
+import { reducer, initialState } from "../../reducers/gameReducer";
+import { Pizza } from "../game/Pizza";
+import { Button } from "../ui/Button";
+import { QuestionDisplay } from "../ui/QuestionDisplay";
+import { FeedbackDisplay } from "../ui/FeedbackDisplay";
+import { VIRTUAL_WIDTH, VIRTUAL_HEIGHT } from "../core/GameContainer";
 
-export const GameScene = () => {
+export const GameScene = ({ onEndGame }: { onEndGame: () => void }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const playerDenominator = state.selectedSlices.length;
@@ -76,6 +73,7 @@ export const GameScene = () => {
         y={VIRTUAL_HEIGHT / 2 + 60}
         onClick={handleDecreaseDenominator}
       />
+      <Button text="おわる" x={100} y={50} onClick={onEndGame} />
       {state.judgement === "pending" && (
         <Button
           text="これでどうだ！"

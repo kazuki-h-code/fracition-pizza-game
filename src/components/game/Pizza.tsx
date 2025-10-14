@@ -1,8 +1,4 @@
 import { PizzaSlice } from "./PizzaSlice";
-import { Container } from "pixi.js";
-import { extend } from "@pixi/react";
-
-extend({ Container });
 
 type PizzaProps = {
   selectedSlices: boolean[];

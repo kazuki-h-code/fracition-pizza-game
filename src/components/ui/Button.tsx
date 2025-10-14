@@ -1,8 +1,5 @@
-import { Container, Text, Graphics, TextStyle } from "pixi.js";
+import { Graphics, TextStyle } from "pixi.js";
 import { useState, useCallback } from "react";
-import { extend } from "@pixi/react";
-
-extend({ Container, Text, Graphics });
 
 type ButtonProps = {
   text: string;
