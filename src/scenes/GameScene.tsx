@@ -1,4 +1,3 @@
-import { useApplication } from "@pixi/react";
 import {
   VIRTUAL_WIDTH,
   VIRTUAL_HEIGHT,
@@ -12,7 +11,6 @@ import { FeedbackDisplay } from "../components/ui/FeedbackDisplay";
 
 export const GameScene = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { app } = useApplication();
 
   const playerDenominator = state.selectedSlices.length;
 
@@ -48,8 +46,8 @@ export const GameScene = () => {
   return (
     <>
       <QuestionDisplay
-        x={150}
-        y={50}
+        x={VIRTUAL_WIDTH / 2}
+        y={80}
         numerator={state.currentQuestion.numerator}
         denomirator={state.currentQuestion.denominator}
       />
@@ -58,29 +56,39 @@ export const GameScene = () => {
         onSliceClick={handleSliceClick}
         radius={150}
         x={VIRTUAL_WIDTH / 2}
-        y={VIRTUAL_HEIGHT / 2}
+        y={VIRTUAL_HEIGHT / 2 + 30}
       />
       <Button
         text="リセット"
-        x={VIRTUAL_WIDTH / 2 - 200}
-        y={525}
+        x={VIRTUAL_WIDTH - 120}
+        y={VIRTUAL_HEIGHT / 2 - 60}
         onClick={handleReset}
       />
-      <Button text="切る" x={330} y={500} onClick={handleIncreaseDenominator} />
-      <Button text="戻す" x={520} y={500} onClick={handleDecreaseDenominator} />
+      <Button
+        text="切る"
+        x={VIRTUAL_WIDTH - 120}
+        y={VIRTUAL_HEIGHT / 2}
+        onClick={handleIncreaseDenominator}
+      />
+      <Button
+        text="戻す"
+        x={VIRTUAL_WIDTH - 120}
+        y={VIRTUAL_HEIGHT / 2 + 60}
+        onClick={handleDecreaseDenominator}
+      />
       {state.judgement === "pending" && (
         <Button
           text="これでどうだ！"
-          x={710}
-          y={500}
+          x={VIRTUAL_WIDTH / 2}
+          y={550}
           onClick={handleCheckAnswer}
         />
       )}
       {state.judgement !== "pending" && (
         <FeedbackDisplay
           status={state.judgement}
-          screenWidth={app.screen.width}
-          screenHeight={app.screen.height}
+          screenWidth={VIRTUAL_WIDTH}
+          screenHeight={VIRTUAL_HEIGHT}
           onNextQuestion={handleNextQuestion}
         />
       )}
