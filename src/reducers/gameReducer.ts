@@ -19,7 +19,7 @@ export type GameAction =
 // 初期状態
 export const initialState: GameState = {
   selectedSlices: [false],
-  currentQuestion: { numerator: 3, denominator: 8 },
+  currentQuestion: { numerator: 1, denominator: 2 },
   judgement: "pending",
 };
 

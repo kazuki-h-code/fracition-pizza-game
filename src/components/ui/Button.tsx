@@ -17,7 +17,7 @@ export const Button = ({ text, x, y, onClick }: ButtonProps) => {
 
   const draw = useCallback(
     (g: Graphics) => {
-      const color = isPressed ? 0x222222 : isHovered ? 0x333333 : 0x555555;
+      const color = isPressed ? 0x1565c0 : isHovered ? 0x42a5f5 : 0x1976d2;
       g.clear();
       g.filletRect(
         -buttonWidth / 2,
@@ -44,12 +44,15 @@ export const Button = ({ text, x, y, onClick }: ButtonProps) => {
       scale={scale}
       interactive={true}
       onPointerOver={() => setIsHovered(true)}
-      onPointerOut={() => setIsHovered(false)}
-      onPointerDown={() => {
-        setIsPressed(true);
+      onPointerOut={() => {
+        setIsHovered(false);
+        setIsPressed(false);
+      }}
+      onPointerDown={() => setIsPressed(true)}
+      onPointerUp={() => {
+        setIsPressed(false);
         onClick();
       }}
-      onPointerUp={() => setIsPressed(false)}
       onPointerUpOutside={() => setIsHovered(false)}
     >
       <pixiGraphics draw={draw} />

@@ -20,7 +20,7 @@ export const FeedbackDisplay = ({
       g.clear();
       if (status === "correct") {
         g.circle(0, 0, 100).stroke({
-          color: 0x33ff33,
+          color: 0x4caf50,
           width: 15,
         });
       } else {
@@ -28,7 +28,7 @@ export const FeedbackDisplay = ({
           .lineTo(70, 70)
           .moveTo(70, -70)
           .lineTo(-70, 70)
-          .stroke({ color: 0xff3333, width: 15 });
+          .stroke({ color: 0xf44336, width: 15 });
       }
     },
     [status],
@@ -45,7 +45,7 @@ export const FeedbackDisplay = ({
   );
 
   const feedbackText = status === "correct" ? "せいかい！" : "ざんねん！";
-  const textColor = status === "correct" ? "#33FF33" : "#FF3333";
+  const textColor = status === "correct" ? "0x4caf50" : "0xf44336";
 
   return (
     <>

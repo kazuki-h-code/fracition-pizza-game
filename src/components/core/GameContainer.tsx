@@ -41,7 +41,7 @@ const ResizeContainer = ({ children }: { children: React.ReactNode }) => {
 export const GameContainer = () => {
   return (
     <>
-      <Application antialias={true} background={"#1099bb"} resizeTo={window}>
+      <Application antialias={true} background={"0x81d4fa"} resizeTo={window}>
         <ResizeContainer>
           <SceneManager />
         </ResizeContainer>

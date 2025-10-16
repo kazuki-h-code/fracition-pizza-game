@@ -19,11 +19,11 @@ export const PizzaSlice = ({
   const [isHovered, setIsHovered] = useState(false);
   const drawPizza = useCallback(
     (g: Graphics) => {
-      let sliceColor = 0xffd700;
+      let sliceColor = 0xffe082;
       if (isSelected) {
-        sliceColor = 0x90ee90;
+        sliceColor = 0xffa726;
       } else if (isHovered) {
-        sliceColor = 0xfffbc9;
+        sliceColor = 0xfff9c4;
       }
 
       const sliceAngle = (2 * Math.PI) / totalSlices;
