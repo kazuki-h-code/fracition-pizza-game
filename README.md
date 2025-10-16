@@ -2,7 +2,7 @@
 
 小学生が分数の概念を、ピザを切り分けるという操作を通して視覚的・直感的に学べるインタラクティブな教育ゲームです。
 
-**[ここにゲームのスクリーンショットを挿入]**
+![分数ピザゲームのプレイ動画](https://github.com/kazuki-h-code/fraction-pizza-game/blob/main/docs/images/fraction-pizza-game_demo.gif)
 
 ---
 
