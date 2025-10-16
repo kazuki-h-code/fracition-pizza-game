@@ -14,10 +14,10 @@ export const QuestionDisplay = ({
   numerator,
   denomirator,
 }: QuestionDisplayProps) => {
-  const lineStyle = { width: 4, color: 0xffffff };
   const textStyle = new TextStyle({ fontSize: 40, fill: "white" });
 
   const drawLine = useCallback((g: Graphics) => {
+    const lineStyle = { width: 4, color: 0xffffff };
     g.clear();
     g.moveTo(-40, 0).lineTo(40, 0).stroke(lineStyle);
   }, []);
